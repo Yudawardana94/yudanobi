@@ -37,12 +37,12 @@ const HomeStack = () => {
                     <Image source={Icons.nobi_active} style={iconStyle} resizeMode={"contain"}/> : 
                     <Image source={Icons.nobi_inactive} style={iconStyle} resizeMode={"contain"}/>
             }}/>
-            <Tab.Screen name="ProfileScreen" component={ProfileScreen} options={{
+            {/* <Tab.Screen name="ProfileScreen" component={ProfileScreen} options={{
                 headerShown: false,
                 tabBarIcon: ({focused}) => focused ? 
                 <Image source={Icons.user_active} style={iconStyle} resizeMode={"contain"}/> : 
                 <Image source={Icons.user_inactive} style={iconStyle} resizeMode={"contain"}/>
-            }}/>
+            }}/> */}
         </Tab.Navigator>
     )
 }

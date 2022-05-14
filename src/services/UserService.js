@@ -6,19 +6,25 @@ const baseUrl = API_URL
 
 export const userLogin = async (payload) => {
     try {
-        // const validated = await axios.post(baseUrl + 'login', {
-        //     email: 'test@usenobi.com',
-        //     password: 'Test123'
-        // })
-        const validated = await axios.get('https://swapi.dev/api/people/1')
-        console.log(validated.data, "---ini validated")
+        const validated = await axios.post(`${baseUrl}login`, payload)
         if(validated.status !== 200) {
             throw new Error()
         }
         setToken(validated.data.token)
-        return {status: validated.status, data: validated.data}
+        return {
+            status: validated.status, 
+            data: validated.data
+        }
     } catch (error) {
-        console.log(error.message,'---error')
-        return error.response
+        if(error.response.status == 404) {
+            return {
+                status: error.response.status,
+                message: 'incorrect email / password'
+            }
+        }
+        return {
+            status: error.response.status,
+            message: error.message
+        }
     }
 }
