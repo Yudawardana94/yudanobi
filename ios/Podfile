@@ -32,6 +32,7 @@ target 'yudanobi' do
 
   post_install do |installer|
     react_native_post_install(installer)
+    config.build_settings['ONLY_ACTIVE_ARCH'] = 'YES'
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
   end
 end

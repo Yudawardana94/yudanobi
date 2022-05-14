@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {getToken} from './AsyncService'
 import {API_URL} from '@env'
 
 const baseUrl = API_URL
@@ -20,8 +21,9 @@ export const getList = async () => {
 
 export const getDashboard = async () => {
     try {
+        const token = await getToken()
         const dashboardData = await axios.post(`${baseUrl}dashboard`, {
-            token: "nobi14564214"
+            token
         })
         return {
             status: dashboardData.status,

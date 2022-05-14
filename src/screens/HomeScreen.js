@@ -62,9 +62,9 @@ const HomeScreen = (props) => {
   const SearchBox = () => {
     return (
       <View style={styles.searchContainer}>
-        <Pressable onPress={onGoback}>
+        {/* <Pressable onPress={onGoback}>
           <Image source={Icon.back_outline} style={styles.backIcon} resizeMode="contain" />
-        </Pressable>
+        </Pressable> */}
         <View style={styles.searchBox}>
           <Image source={Icon.search} style={styles.searchIcon} resizeMode="contain" />
           <TextInput
@@ -86,8 +86,9 @@ const HomeScreen = (props) => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <LinearGradient colors={['#152A53', '#000000']} style={styles.linearStyle}>
+        <SafeAreaView />
         <SearchBox />
         {listData.length > 0 && <ScrollView style={styles.contentWrapper}>
           {
@@ -97,7 +98,7 @@ const HomeScreen = (props) => {
           }
         </ScrollView>}
       </LinearGradient>
-    </SafeAreaView>
+    </View>
   )
 }
 

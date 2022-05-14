@@ -105,7 +105,6 @@ const styles = StyleSheet.create({
     fontSize: 44,
     fontWeight: 'bold',
     marginTop: 12,
-    // fontFamily: 'SignikaNegative-Bold'
   },
   buttonText: {
     fontWeight: "bold",

@@ -41,6 +41,10 @@ const LoginScreen = (props) => {
         throw new Error(message)
       }
       setError(null)
+      setLoginForm({
+        email: '',
+        password: ''
+      })
       props.navigation.navigate("Home", {screen: "Dashboard"})
     } catch (error) {
       setError(error.message)
