@@ -3,14 +3,21 @@ import { Image, View, Text, TextInput, SafeAreaView, StyleSheet, TouchableOpacit
 import LinearGradient from 'react-native-linear-gradient';
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 
-import Icon from '../assets/icons'
+import {userLogin, } from '../services/UserService'
+import {getToken} from '../services/AsyncService'
+import Icon from '../assets'
 
 const LoginScreen = (props) => {
   const [loginForm, setLoginForm] = useState({
     email: '',
     password: '',
   });
+  const [errorState, setError] = useState(null)
   const [secureTextEntry, setSecureTextEntry] = useState(true)
+
+  useEffect(() => {
+    onCheckLogin()
+  },[])
 
   const onChangeText = (field, input) => {
     setLoginForm(value => {
@@ -18,8 +25,30 @@ const LoginScreen = (props) => {
     })
   }
 
-  const onLogin = () => {
-    props.navigation.navigate("Home")
+  const onCheckLogin = async () => {
+    try {
+      let loged = await getToken();
+      loged ? props.navigation.navigate('Home') : null 
+    } catch (error) {
+      // TODO:  make a toast to check some error or just let it be
+    }
+  }
+
+  const onLogin = async () => {
+    try {
+      setError(null)
+      // add email format validation before call userLogin function
+      const {status, message} = await userLogin(loginForm);
+      if(status !== 200) {
+        setError(message)
+        throw new Error('Error when try to connect to server')
+      }
+      setError(null)
+      props.navigation.navigate("Home")
+    } catch (error) {
+      // TODO:  make a toast to check some error or just let it be
+      setError(error.message)
+    }
   }
 
   const onPasswordVisiblePressed = () => {
@@ -36,6 +65,11 @@ const LoginScreen = (props) => {
 
         {/* Input Wrapper */}
         <View style={styles.inputWrapper}>
+          {/* Error box */}
+          {errorState && <View style={styles.errorWrapper}>
+            <Text style={styles.errorText}>{errorState}</Text>
+          </View>}
+
           {/* Email */}
           <View style={styles.input}>
             <Text style={styles.textLabel}>E-mail Address</Text>
@@ -146,6 +180,22 @@ const styles = StyleSheet.create({
   passwordLogo: {
     height: 18,
     width: 18
+  },
+  errorWrapper: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(252,100,110,0.6)',
+    borderColor: '#FF4E5A',
+    borderRadius: 4,
+    borderWidth: 1,
+    paddingTop: 3,
+    paddingBottom: 6,
+    paddingHorizontal: 8,
+  },
+  errorText: {
+    color: "white",
+    fontWeight: 'bold',
+    textTransform: 'capitalize'
   }
 })
 
