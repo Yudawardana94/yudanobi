@@ -2,7 +2,7 @@
 
 ```
 Karena github tidak bisa mengupload file dengan size lebih besar dari 25mb dan hasil build apk android ini berukuran 27mb maka saya upload filenya ke google dive di link berikut
-https://drive.google.com/drive/folders/1kicJZhcL4Fn5QcGDPr0Vt20CRI7EUdgH?usp=sharing
+[a link] https://drive.google.com/drive/folders/1kicJZhcL4Fn5QcGDPr0Vt20CRI7EUdgH?usp=sharing
 ```
 
 ## Catatan Tampilan
