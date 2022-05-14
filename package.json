@@ -5,6 +5,8 @@
   "scripts": {
     "android": "npx react-native run-android",
     "ios": "npx react-native run-ios",
+    "clean:android": "cd android && ./gradlew clean && cd ..",
+    "clean:ios": "cd ios && rm -rf podfile.lock && pod install --repo-update && cd ..",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint ."
