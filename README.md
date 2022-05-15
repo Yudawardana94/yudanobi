@@ -15,6 +15,10 @@ Karena github tidak bisa mengupload file dengan size lebih besar dari 25mb dan h
     - jika tidak berhasil cek Xcode -> Build Setting . bagian tab Architecture -> Excluded Architecture -> tambahkan arm64 untuk debug dan releasenya
 
 ## Cara menjalankan applikasi
+buat file .env dengan ini berikut
+```
+API_URL="http://backend.test.usenobi.com:8000/"
+```
 ```
 npm install
 ```
